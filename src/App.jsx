@@ -1,9 +1,8 @@
 import React from 'react';
+import Container from './containers/Container';
 
 const App = () =>
-  <div>
-    Bonjour DWWM Lyon!
-  </div>
+  <Container />
 ;
 
 export default App;
