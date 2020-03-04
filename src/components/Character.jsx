@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card, ListGroup } from 'react-bootstrap';
+import LinkContainer from '../containers/LinkContainer';
 
-const Character = ({ name, gender, birth_year, edited }) =>
+const Character = ({ name, gender, birth_year, edited, homeworld }) =>
   <Card>
     <Card.Header as="h3">{name}</Card.Header>
     <Card.Body>
@@ -10,6 +11,9 @@ const Character = ({ name, gender, birth_year, edited }) =>
     <ListGroup variant="flush">
       <ListGroup.Item>Gender: {gender}</ListGroup.Item>
       <ListGroup.Item>Birth year: {birth_year}</ListGroup.Item>
+      <ListGroup.Item>
+        Homeworld: <LinkContainer url={homeworld} />
+      </ListGroup.Item>
     </ListGroup>
     <Card.Footer>
       <small className="text-muted">

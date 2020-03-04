@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Loader from 'react-loader-spinner';
+import { Link } from 'react-router-dom';
 import { Character, Planet } from '../components';
 import { ListGroup, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { parseSwapiUrl } from '../utils';
 
 const componentsByResource = {
   people: Character,
@@ -11,9 +12,8 @@ const componentsByResource = {
 }
 
 const ListItem = ({ name, url }) => {
-  const matches = url.match(/^https:\/\/swapi\.co\/api\/(\w+)\/(\d+)\/$/);
-  const [match, resource, id] = matches;
-
+  const [resource, id] = parseSwapiUrl(url);
+  
   return (
     <ListGroup.Item>
       <Link to={`/${resource}/${id}`}>
