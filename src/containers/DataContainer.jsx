@@ -3,10 +3,24 @@ import Axios from 'axios';
 import Loader from 'react-loader-spinner';
 import { Character, Planet } from '../components';
 import { ListGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const componentsByResource = {
   people: Character,
   planets: Planet,
+}
+
+const ListItem = ({ name, url }) => {
+  const matches = url.match(/^https:\/\/swapi\.co\/api\/(\w+)\/(\d+)\/$/);
+  const [match, resource, id] = matches;
+
+  return (
+    <ListGroup.Item>
+      <Link to={`/${resource}/${id}`}>
+        {name}
+      </Link>
+    </ListGroup.Item>
+  );
 }
 
 export default class DataContainer extends Component {
@@ -14,7 +28,7 @@ export default class DataContainer extends Component {
     data: null,
   }
 
-  componentDidMount = () => {
+  fetchData = () => {
     const { resource, id } = this.props.match.params;
 
     let url = `https://swapi.co/api/${resource}`;
@@ -25,6 +39,20 @@ export default class DataContainer extends Component {
     Axios.get(url)
     .then(response => this.setState({ data: response.data }))
     .catch(error => console.error(error));
+  }
+
+  componentDidMount = () => {
+    this.fetchData();
+  }
+
+  componentDidUpdate = (prevProps) => {
+    const { resource, id } = this.props.match.params;
+
+    if (resource !== prevProps.match.params.resource ||
+      id !== prevProps.match.params.id) {
+      this.setState({ data: null });
+      this.fetchData();
+    }
   }
 
   render = () => {
@@ -48,8 +76,8 @@ export default class DataContainer extends Component {
     if (!id) {
       return (
         <ListGroup>
-          {data.results.map(item =>
-            <ListGroup.Item>{item.name}</ListGroup.Item>
+          {data.results.map( (item, index) =>
+            <ListItem {...item} key={index} />
           )}
         </ListGroup>
       );
