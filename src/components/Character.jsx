@@ -4,7 +4,7 @@ import { SingleResourceLayout } from '.';
 import LinkContainer from '../containers/LinkContainer';
 
 const Character = ({ name, gender, birth_year, edited, homeworld }) =>
-  <SingleResourceLayout {...{ resource: 'planets', name, edited }}>
+  <SingleResourceLayout {...{ resource: 'people', name, edited }}>
     <ListGroup variant="flush">
       <ListGroup.Item>Gender: {gender}</ListGroup.Item>
       <ListGroup.Item>Birth year: {birth_year}</ListGroup.Item>
