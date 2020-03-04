@@ -25,6 +25,7 @@ export default class DataContainer extends Component {
       name={data.name}
       gender={data.gender}
       birth_year={data.birth_year}
+      edited={data.edited}
     />;
   }
 }
