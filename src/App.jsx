@@ -7,6 +7,7 @@ const App = () =>
   <Container>
     <BrowserRouter>
       <Switch>
+        <Route exact path="/:resource(\w+)" component={DataContainer} />
         <Route exact path="/:resource(\w+)/:id(\d+)" component={DataContainer} />
       </Switch>
     </BrowserRouter>

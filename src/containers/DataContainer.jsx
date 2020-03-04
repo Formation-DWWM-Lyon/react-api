@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import Loader from 'react-loader-spinner';
 import { Character, Planet } from '../components';
+import { ListGroup } from 'react-bootstrap';
 
 const componentsByResource = {
   people: Character,
@@ -15,14 +16,19 @@ export default class DataContainer extends Component {
 
   componentDidMount = () => {
     const { resource, id } = this.props.match.params;
-    console.log("Le composant Container vient juste d'être monté!");
-    Axios.get(`https://swapi.co/api/${resource}/${id}`)
+
+    let url = `https://swapi.co/api/${resource}`;
+    if (id) {
+      url += `/${id}`;
+    }
+
+    Axios.get(url)
     .then(response => this.setState({ data: response.data }))
     .catch(error => console.error(error));
   }
 
   render = () => {
-    const { resource } = this.props.match.params;
+    const { resource, id } = this.props.match.params;
     const { data } = this.state;
 
     if (!data) {
@@ -36,6 +42,16 @@ export default class DataContainer extends Component {
             timeout={3000} //3 secs
           />
         </div>
+      );
+    }
+
+    if (!id) {
+      return (
+        <ListGroup>
+          {data.results.map(item =>
+            <ListGroup.Item>{item.name}</ListGroup.Item>
+          )}
+        </ListGroup>
       );
     }
     
