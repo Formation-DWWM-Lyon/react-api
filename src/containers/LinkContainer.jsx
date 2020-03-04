@@ -24,10 +24,10 @@ export default class LinkContainer extends Component {
     if (!data) {
       return (
         <Loader
-          type="Puff"
+          type="ThreeDots"
           color="#00BFFF"
-          height={24}
-          width={24}
+          height={20}
+          width={20}
           className="d-inline"
         />
       );

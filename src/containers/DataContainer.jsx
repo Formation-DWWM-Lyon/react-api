@@ -58,7 +58,7 @@ export default class DataContainer extends Component {
       return (
         <div className="text-center">
           <Loader
-            type="Puff"
+            type="Rings"
             color="#00BFFF"
             height={100}
             width={100}
