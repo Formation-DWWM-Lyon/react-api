@@ -14,15 +14,15 @@ export default class DataContainer extends Component {
   }
 
   componentDidMount = () => {
-    const { resource } = this.props;
+    const { resource, id } = this.props.match.params;
     console.log("Le composant Container vient juste d'être monté!");
-    Axios.get(`https://swapi.co/api/${resource}/1`)
+    Axios.get(`https://swapi.co/api/${resource}/${id}`)
     .then(response => this.setState({ data: response.data }))
     .catch(error => console.error(error));
   }
 
   render = () => {
-    const { resource } = this.props;
+    const { resource } = this.props.match.params;
     const { data } = this.state;
 
     if (!data) {
