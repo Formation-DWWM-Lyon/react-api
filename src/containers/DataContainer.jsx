@@ -2,14 +2,9 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import Loader from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
-import { Character, Planet } from '../components';
 import { ListGroup, Button } from 'react-bootstrap';
 import { parseSwapiUrl } from '../utils';
-
-const componentsByResource = {
-  people: Character,
-  planets: Planet,
-}
+import { resources } from '../data';
 
 const ListItem = ({ name, url }) => {
   const [resource, id] = parseSwapiUrl(url);
@@ -67,7 +62,6 @@ export default class DataContainer extends Component {
             color="#00BFFF"
             height={100}
             width={100}
-            timeout={3000} //3 secs
           />
         </div>
       );
@@ -83,7 +77,7 @@ export default class DataContainer extends Component {
       );
     }
     
-    const ComponentName = componentsByResource[resource] || 'div';
+    const ComponentName = resources[resource].componentName || 'div';
 
     return (
       <div>
