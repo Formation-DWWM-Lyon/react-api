@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import { Character } from '../components';
 
-export default class Container extends Component {
+export default class DataContainer extends Component {
   state = {
     data: null,
   }

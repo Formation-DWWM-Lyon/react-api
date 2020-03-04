@@ -1,8 +1,8 @@
 import React from 'react';
-import Container from './containers/Container';
+import DataContainer from './containers/DataContainer';
 
 const App = () =>
-  <Container />
+  <DataContainer />
 ;
 
 export default App;
