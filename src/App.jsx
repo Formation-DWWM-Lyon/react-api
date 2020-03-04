@@ -3,6 +3,7 @@ import DataContainer from './containers/DataContainer';
 import { Container, Image } from 'react-bootstrap';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { StarWarsLogo } from './images';
+import { ResourceTabs } from './components';
 
 const App = () =>
   <Container>
@@ -12,6 +13,7 @@ const App = () =>
       Encyclopedia
     </h1>
     <BrowserRouter>
+      <ResourceTabs />
       <Switch>
         <Route exact path="/:resource(\w+)" component={DataContainer} />
         <Route exact path="/:resource(\w+)/:id(\d+)" component={DataContainer} />

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import Loader from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
-import { ListGroup, Button } from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 import { parseSwapiUrl } from '../utils';
 import { resources } from '../data';
 
