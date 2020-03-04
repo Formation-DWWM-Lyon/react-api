@@ -79,15 +79,6 @@ export default class DataContainer extends Component {
     
     const ComponentName = resources[resource].componentName || 'div';
 
-    return (
-      <div>
-        <Link to={`/${resource}`}>
-          <Button variant="primary">
-            Back to list
-          </Button>
-        </Link>
-        <ComponentName {...data} />
-      </div>
-    );
+    return <ComponentName {...data} />
   }
 }
